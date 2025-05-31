@@ -1,0 +1,122 @@
+/* Reset & mobile-first setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: #f5f5f5; /* fallback color */
+  }
+  
+  .loading-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('images/loadpage.png'); /* Replace with your background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .background-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    z-index: 1;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column; /* stack them vertically */
+    align-items: center;
+    gap: 5px; /* optional spacing between texts */
+  }
+  
+  .sltb {
+    color: rgba(8, 1, 1, 0.8); /* fix rgba syntax */
+    font-size: 30px;
+    letter-spacing: 1px;
+    position: relative; /* enable offsetting */
+    top: -45px; /* move upwards */
+    left: -40px; /* move slightly to the right */
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+  }
+  
+  .eseat {
+    color: #006bc3;
+    font-size: 30px;
+    letter-spacing: 1px;
+    position: relative; /* enable offsetting */
+    top: -87px; /* move downwards */
+    left: 53px; /* move slightly to the left */
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+  }
+  
+  
+  /* Logo image styling */
+  .logo {
+    z-index: 2;
+    width: 50px; /* adjust for mobile screens */
+    height: auto;
+    position: relative; /* relative to .loading-container */
+    margin-top: -250px; /* adjust vertical position */
+    margin-left: auto;
+    margin-right: auto;
+    display: block; /* ensure it's centered */
+      }
+      
+  
+  
+  /* Hide for larger screens (only show on mobile) */
+  @media (min-width: 768px) {
+    body {
+      display: none; /* completely hide on desktop and tablet */
+    }
+  }
+
+
+  /* existing content... */
+
+.line {
+    position: absolute;
+    top: 415px; /* 50% center + 50px below */
+    left: 219px;
+    transform: translateX(-50%);
+    width: 182px; /* width of the line */
+    height: 3px; /* thickness of the line */
+    background-color: #c6c1c1; /* ash color */
+    border-radius: 1.5px;
+    z-index: 1;
+  }
+  
+
+  .line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 3px;
+    width: 0; /* Start from 0 width */
+    background-color: orange;
+    border-radius: 1.5px;
+    animation: fillLine 10s linear forwards;
+  }
+  
+  @keyframes fillLine {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%; /* Fill to 100% of .line width */
+    }
+  }
+  

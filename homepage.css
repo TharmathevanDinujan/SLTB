@@ -1,0 +1,777 @@
+/* Reset & mobile-first setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  html, body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background: #f5f5f5; /* fallback color */
+    overflow-y: scroll; /* always show vertical scrollbar */
+  }
+  
+  .loading-container {
+    position: relative;
+    width: 100%;
+    height: 50%; /* only half of the container height (top half) */
+    background-image: url('images/loadpage.png');
+    background-size: 150% 300%; /* double the height of the image, show top half */
+    background-position: top center; /* show top half of the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .loading-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* fade bottom half of the image */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #f5f5f5 100%);
+    pointer-events: none; /* ensure it doesn’t interfere with content */
+  }
+  
+  
+  
+  .background-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    z-index: 1;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column; /* stack them vertically */
+    align-items: center;
+    gap: 5px; /* optional spacing between texts */
+  }
+  
+  .sltb {
+    color: rgb(0, 0, 0); /* fix rgba syntax */
+    font-size: 18px;
+    letter-spacing: 1px;
+    position: relative; /* enable offsetting */
+    top: -415px; /* move upwards */
+    left: -137px; /* move slightly to the right */
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+  }
+  
+  .eseat {
+    color: #006bc3;
+    font-size: 18px;
+    letter-spacing: 1px;
+    position: relative; /* enable offsetting */
+    top: -443px; /* move downwards */
+    left: -78px; /* move slightly to the left */
+    font-family: 'Inter', sans-serif; /* Use Inter font */
+  }
+  
+  
+  /* Logo image styling */
+  .logo {
+    z-index: 2;
+    width: 22px; /* adjust for mobile screens */
+    height: auto;
+    position: relative; /* relative to .loading-container */
+    margin-top: -400px; /* adjust vertical position */
+    margin-left: 20px;
+    margin-right: auto;
+    display: block; /* ensure it's centered */
+      }
+      
+  
+  
+  /* Hide for larger screens (only show on mobile) */
+  @media (min-width: 768px) {
+    body {
+      display: none; /* completely hide on desktop and tablet */
+    }
+  }
+
+
+
+  
+  
+
+  
+/*
+ * Made by Erik Terwan
+ * 24th of November 2015
+ * MIT License
+ *
+ *
+ * If you are thinking of using this in
+ * production code, beware of the browser
+ * prefixes.
+ */
+
+ 
+ 
+ * {
+   scroll-behavior: smooth;
+ }
+ 
+ /* Menu code starts here */
+ 
+ #menuToggle {
+    position: relative;
+    top: -430px;
+    left: 350px; /* left side near edge */
+    z-index: 1000;
+    user-select: none;
+    color: #000000;
+    
+  }
+ 
+  
+ #menuToggle a
+ {
+   text-decoration: none;
+   color: #0e0000;
+   
+   transition: color 0.3s ease;
+ }
+ 
+ #menuToggle a:hover
+ {
+   color: tomato;
+ }
+ 
+ 
+ #menuToggle input
+ {
+   display: block;
+   width: 40px;
+   height: 32px;
+   position: absolute;
+   top: -7px;
+   left: -5px;
+   
+   cursor: pointer;
+   
+   opacity: 0; /* hide this */
+   z-index: 2; /* and place it over the hamburger */
+   
+   -webkit-touch-callout: none;
+ }
+ 
+ /*
+  * Just a quick hamburger
+  */
+ #menuToggle span
+ {
+   display: block;
+   width: 30px;
+   height: 3px;
+   margin-bottom: 5px;
+   position: relative;
+   
+   background: #000000;
+   border-radius: 3px;
+   
+   z-index: 1;
+   
+   transform-origin: 4px 0px;
+   
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+               opacity 0.55s ease;
+ }
+ 
+ #menuToggle span:first-child
+ {
+   transform-origin: 0% 0%;
+ }
+ 
+ #menuToggle span:nth-last-child(2)
+ {
+   transform-origin: 0% 100%;
+ }
+ 
+ /* 
+  * Transform all the slices of hamburger
+  * into a crossmark.
+  */
+ #menuToggle input:checked ~ span
+ {
+   opacity: 1;
+   transform: rotate(45deg) translate(-2px, -1px);
+   background: #232323;
+ }
+ 
+ #menuToggle input:checked ~ ul {
+  transform: translateX(0); /* slide in */
+}
+ /*
+  * But let's hide the middle one.
+  */
+ #menuToggle input:checked ~ span:nth-last-child(3)
+ {
+   opacity: 0;
+   transform: rotate(0deg) scale(0.2, 0.2);
+ }
+ 
+ /*
+  * Ohyeah and the last one should go the other direction
+  */
+ #menuToggle input:checked ~ span:nth-last-child(2)
+ {
+   transform: rotate(-45deg) translate(0, -1px);
+ }
+ 
+ /*
+  * Make this absolute positioned
+  * at the top left of the screen
+  */
+  #menu {
+    position: fixed;
+    top: 0;
+    left: 0;  /* align at left edge */
+    width: 300px; /* fixed width for menu panel */
+    height: 100vh; /* full height */
+    background: #ededed;
+    padding: 50px 30px 30px 30px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    list-style: none;
+    transform: translateX(-100%); /* hidden fully left */
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    -webkit-font-smoothing: antialiased;
+    z-index: 999;
+  }
+ 
+ #menu li
+ {
+   padding: 10px 0;
+   font-size: 22px;
+ }
+ 
+ #menu li label
+ {
+   cursor: pointer;
+ }
+ 
+ /*
+  * And let's slide it in from the left
+  */
+ #menuToggle input:checked ~ ul
+ {
+   transform: none;
+ }
+
+ .custom-text-container {
+    position: absolute;  /* so you can place it freely */
+    top: 60%;            /* adjust vertical position */
+    left: 50%;           /* center horizontally */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    user-select: none;
+    z-index: 10;
+    
+  }
+  
+  .custom-text-container .line1 {
+    display: block;
+    color: #001B76;      /* orange/red color for line 1 */
+    font-size: 24px;
+    margin-bottom: 8px;  /* space between lines */
+    position: relative;
+    left: -70px;             /* adjust horizontal position if needed */
+    top: -400px;  
+    white-space: nowrap;    /* Prevent line breaks */
+    overflow: hidden;       /* Optional: hide overflow */
+    text-overflow: ellipsis; /* Optional: show "..." if text too long */
+    /* adjust vertical position if needed */
+    font-family: 'Poppins', sans-serif;
+    ;
+  }
+  .custom-text-container .line2 {
+    display: block;
+    color: #001B76;      /* orange/red color for line 1 */
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 8px;  /* space between lines */
+    position: relative;
+    left: -115px;             /* adjust horizontal position if needed */
+    top: -415px;              /* adjust vertical position if needed */
+    font-family: 'Poppins', sans-serif;  
+}
+  
+  .custom-text-container .line3 {
+    display: block;
+    color: #020f1b;      /* blue color for line 2 */
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    left: -80px;          /* slight right shift */
+    top: -420px;           /* slight up shift */
+  }
+
+/* Common dropdown styling remains the same */
+.dropdown {
+  position: absolute; 
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid #0072CE33;
+  border-radius: 12px;
+  padding: 10px 15px;
+  background: #ECF6FF;
+  color: #717371;
+  cursor: pointer;
+  min-width: 350px;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.dropdown-image {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  object-fit: contain;
+}
+
+.dropdown-icon {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+.dropdown-text {
+  flex: 1;
+  font-weight: 600;
+}
+
+.dropdown-arrow {
+  margin-left: 8px;
+  transition: transform 0.3s;
+}
+
+.dropdown.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  background: #ECF6FF;
+  border: 2px solid #0072CE33;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: none;
+  flex-direction: column;
+  z-index: 20;
+}
+
+.dropdown.open .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu div {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dropdown-menu div:hover {
+  background: #76b3e1;
+}
+
+/* Specific positioning for the FROM dropdown */
+#cityDropdown {
+  top: 200px;  /* Original position */
+  left: 30px;
+}
+
+/* Specific positioning for the TO dropdown */
+#cityDropdownTo {
+  top: 255px;  /* Positioned below the FROM dropdown */
+  left: 30px;
+}
+
+/* Make From/To dropdown menu appear above Travel Date when open */
+#cityDropdown.open,
+#cityDropdownTo.open {
+  z-index: 20;  /* higher than travelDateDropdown's 15 */
+}
+
+
+#travelDateDropdown {
+  top: -145px;
+  left: 30px;
+  min-width: 350px;
+  cursor: default;
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  border: 2px solid #0072CE33;
+  border-radius: 12px;
+  padding: 10px 15px;
+  background: #ECF6FF;
+  color: #717371;
+  user-select: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 15;
+  justify-content: space-between;
+  position: relative; /* NEW: For absolute positioning of hidden input */
+}
+
+#travelDateDropdown .date-content {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+#travelDateDropdown .dropdown-text {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #717371;
+}
+
+#travelDateDropdown .selected-date {
+  font-size: 20px;
+  color: #000000;
+  margin-top: 3px;
+  font-weight: 700;
+}
+
+#calendarIcon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hidden but visible-for-click date input */
+#hiddenDatePicker {
+  position: absolute;
+  right: 10px; /* align with calendar icon */
+  width: 24px;
+  height: 24px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+button {
+  padding: 7px;
+  background-color: #F17218;
+  color: white;
+  position: relative;
+  top: -120px;
+  left: 45px;
+  border: none;
+  width: 322px;
+  height: 57px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 30px;
+  transition: background-color 0.3s;
+  font-family: 'Poppins', sans-serif;
+  z-index: 2;
+}
+
+button:hover {
+  background-color: #e99051;
+}
+
+.rectangle-transperent {
+  position: absolute; /* You can also use relative, fixed, or sticky */
+  top: 92px;          /* Distance from top of the page */
+  left: 13px;        /* Distance from left of the page */
+  width: 380px;       /* Width of the rectangle */
+  height: 410px;      /* Height of the rectangle */
+  background-color: rgba(0, 0, 0, 0); /* Fully transparent */
+  border: 3px solid #9ED4FF4D; /* Blue border */
+  /* Optional: add border-radius for rounded corners */
+  border-radius: 16px;
+  z-index: 1; /* lower z-index = behind */
+}
+
+.rectangle-gradient {
+  position: absolute;
+  top: 513px;  /* Positioned below the first rectangle */
+  left: 17px;
+  width: 380px;
+  height: 590px;
+  background: linear-gradient(135deg, #D3EBFF, #EAF6FF); /* Light blue gradient */
+  border: 3px solid #9ED4FF4D;
+  border-radius: 16px;
+  
+}
+
+.text-one {
+  color: #003159; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 540px; /* distance from the top */
+  left: 50%; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 19px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+}
+
+.pic1 {
+  z-index: 2;
+  top: 670px;
+  position: absolute;
+  width: 50px;
+  left: 177px;
+}
+
+.text-two {
+  color: #003159; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 720px; /* distance from the top */
+  left: 201px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 14px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+}
+
+.my-line1 {
+  position: absolute; /* can also use relative/fixed */
+  top: 775px;         /* distance from top */
+  left: 45px;         /* distance from left */
+  width: 320px;       /* length of line */
+  border: none;       /* remove default border */
+  height: 2px;        /* line thickness */
+  background-color: #0072CE33; /* line color */
+  z-index: 2;
+}
+
+.pic2 {
+  z-index: 2;
+  top: 800px;
+  position: absolute;
+  width: 50px;
+  left: 177px;
+}
+
+.text-three {
+  color: #003159; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 850px; /* distance from the top */
+  left: 201px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 14px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+}
+
+.my-line2 {
+  position: absolute; /* can also use relative/fixed */
+  top: 905px;         /* distance from top */
+  left: 45px;         /* distance from left */
+  width: 320px;       /* length of line */
+  border: none;       /* remove default border */
+  height: 2px;        /* line thickness */
+  background-color: #0072CE33; /* line color */
+  z-index: 2;
+}
+
+.pic3 {
+  z-index: 2;
+  top: 927px;
+  position: absolute;
+  width: 50px;
+  left: 177px;
+}
+
+.text-four {
+  color: #003159; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 977px; /* distance from the top */
+  left: 201px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 14px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+.text-five {
+  color: #404040; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 1040px; /* distance from the top */
+  left: 201px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 13px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+}
+
+.pic4 {
+  z-index: 2;
+  top: 1120px;
+  position: absolute;
+  width: 35px;
+  left: 50px;
+}
+
+.pic5 {
+  z-index: 2;
+  top: 1120px;
+  position: absolute;
+  width: 34px;
+  left: 230px;
+}
+
+.text-six {
+  color: #404040; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 1127px; /* distance from the top */
+  left: 137px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 15px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.text-seven {
+  color: #404040; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 1127px; /* distance from the top */
+  left: 320px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 15px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.my-line3 {
+  position: absolute; /* can also use relative/fixed */
+  top: 1175px;         /* distance from top */
+  left: -0px;         /* distance from left */
+  width: 410px;       /* length of line */
+  border: none;       /* remove default border */
+  height: 3px;        /* line thickness */
+  background-color: #0072CE33; /* line color */
+  z-index: 2;
+}
+
+.pic6 {
+  z-index: 2;
+  top: 1190px;
+  position: absolute;
+  width: 40px;
+  left: 40px;
+}
+.pic7 {
+  z-index: 2;
+  top: 1193px;
+  position: absolute;
+  width: 36px;
+  left: 139px;
+}
+.pic8 {
+  z-index: 2;
+  top: 1190px;
+  position: absolute;
+  width: 40px;
+  left: 230px;
+}
+.pic9 {
+  z-index: 2;
+  top: 1190px;
+  position: absolute;
+  width: 40px;
+  left: 320px;
+}
+
+.text-eight {
+  color: #404040; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 1230px; /* distance from the top */
+  left: 60px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 17px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.text-nine {
+  color: #404040; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 1230px; /* distance from the top */
+  left: 155px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 17px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.text-ten {
+  color: #404040; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 1230px; /* distance from the top */
+  left: 250px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 17px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.text-eleven {
+  color: #404040; /* Dark gray text color, change to whatever you like */
+  position: absolute; /* or relative/fixed, depending on how you want to place it */
+  top: 1230px; /* distance from the top */
+  left: 345px; /* horizontally center based on container */
+  transform: translateX(-50%); /* perfect horizontal center */
+  text-align: center; /* center the lines of text horizontally */
+  font-size: 17px; /* optional: set the font size */
+  line-height: 1.5; /* optional: adjust spacing between lines */
+  width: 300px; /* optional: set width for better alignment */
+  z-index: 2;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="homepage.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="loading-container">
+    <img src="images/logo.png" alt="Logo" class="logo">
+  </div>
+
+  <div class="background-text">
+        <span class="sltb">SLTB</span>
+        <span class="eseat">e-seat</span>
+  </div> 
+
+
+
+<nav role="navigation">
+  <div id="menuToggle">
+    <!--
+    A fake / hidden checkbox is used as click reciever,
+    so you can use the :checked selector on it.
+    -->
+    <input type="checkbox" id="menuCheckbox" />
+    
+    <!--
+    Some spans to act as a hamburger.
+    
+    They are acting like a real hamburger,
+    not that McDonalds stuff.
+    -->
+    <span></span>
+    <span></span>
+    <span></span>
+    
+    <!--
+    Too bad the menu has to be inside of the button
+    but hey, it's pure CSS magic.
+    -->
+    <ul id="menu">
+      <!-- 
+      We can use a label here to close upon click (when doing same page navigation), this
+      does require a slight bit of JS.
+      -->
+      <li>
+        <a href="#">
+          <label for="menuCheckbox" onclick="this.parentNode.click();">Home</label>
+        </a>
+      </li>
+      <li>
+        <a href="#about">
+          <label for="menuCheckbox" onclick="this.parentNode.click();">About</label>
+        </a>
+      </li>
+      
+      <!-- These just close the menu -->
+      <li><label for="menuCheckbox"><a>Info</a></label></li>
+      <li><label for="menuCheckbox"><a>Contact</a></label></li>
+
+    </ul>
+  </div>
+</nav>
+
+<div class="custom-text-container">
+  <span class="line1"><b>Book your bus with</b> </span>
+  <span class="line2"><b>confidence</b> </span>
+  <span class="line3">Travel Smart, Safe and Informed</span>
+</div>
+
+<div class="dropdown" id="cityDropdown">
+  <img src="images/direct-down.png" alt="Location" class="dropdown-image" />
+  <span class="dropdown-text" id="dropdownText">From</span>
+  <span class="dropdown-arrow">▼</span>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <div>Colombo</div>
+    <div>Kandy</div>
+    <div>Galle</div>
+    <div>Jaffna</div>
+  </div>
+</div>
+
+<div class="dropdown" id="cityDropdownTo">
+  <img src="images/location.png" alt="Location" class="dropdown-image" />
+  <span class="dropdown-text" id="dropdownTextTo">To</span>
+  <span class="dropdown-arrow">▼</span>
+  <div class="dropdown-menu" id="dropdownMenuTo">
+    <div>Colombo</div>
+    <div>Kandy</div>
+    <div>Galle</div>
+    <div>Jaffna</div>
+  </div>
+</div>
+
+<div class="dropdown" id="travelDateDropdown">
+  <div class="date-content">
+    <span class="dropdown-text" id="travelDateText">Travel Date</span>
+    <span class="selected-date" id="selectedDate">Wed, May 31, 2025</span>
+  </div>
+
+  <img src="images/calendar.png" alt="Calendar" class="calendar-icon" id="calendarIcon" />
+
+  <!-- Hidden but "clickable" native date input -->
+  <input type="date" id="hiddenDatePicker" />
+</div>
+
+<button type="submit">Register</button>
+<div class="rectangle-transperent"></div>
+<div class="rectangle-gradient"></div>
+
+
+<div class="text-one">
+  <p>Once booked,</p>
+  <p><strong><b>tap “Track My Bus”</b></strong></p>
+  <p>to watch your vehicle in motion</p>
+  <p>on the map.</p>
+</div>
+
+
+<img src="images/route-square.png" alt="pic1" class="pic1">
+
+<div class="text-two">
+  <p>Live arrival</p>
+  <p>countdowns</p>
+</div>
+
+<hr class="my-line1">
+
+<img src="images/routing.png" alt="pic2" class="pic2">
+
+
+<div class="text-three">
+  <p>Location-based</p>
+  <p>stop alerts</p>
+</div>
+
+<hr class="my-line2">
+
+<img src="images/notification-bing.png" alt="pic3" class="pic3">
+
+
+<div class="text-four">
+  <p>Delay or detour</p>
+  <p>notifications</p>
+</div>
+
+
+<div class="text-five">
+  <p>No more guessing. No more endless waiting</p>
+  <p>at bus stops.</p>
+</div>
+
+<img src="images/Vector.png" alt="pic4" class="pic4">
+
+<div class="text-six">
+  <p>Need help ?</p>
+</div>
+
+<img src="images/call.png" alt="pic5" class="pic5">
+
+<div class="text-seven">
+  <p>Call us - 1315</p>
+</div>
+
+<hr class="my-line3">
+
+<img src="images/home-2.png" alt="pic6" class="pic6">
+<img src="images/discover.png" alt="pic7" class="pic7">
+<img src="images/notification.png" alt="pic8" class="pic8">
+<img src="images/user-octagon.png" alt="pic9" class="pic9">
+
+
+<div class="text-eight">
+  <p>Home</p>
+</div>
+
+<div class="text-nine">
+  <p>Journey</p>
+</div>
+
+<div class="text-ten">
+  <p>Alert</p>
+</div>
+
+<div class="text-eleven">
+  <p>Account</p>
+</div>
+
+<script src="homepage.js"></script>
+
+
+</body>
+</html>
