@@ -12,6 +12,6 @@ window.onload = () => {
     // Redirect after 10 seconds
     setTimeout(() => {
       window.location.href = 'homepage.html';
-    }, 10000);
+    }, 5000);
   };
   
